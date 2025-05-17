@@ -1,9 +1,0 @@
-{
-  "name": "Dev with Postgres & Mongo",
-  "dockerComposeFile": "../docker-compose.yml",
-  "service": "app",
-  "workspaceFolder": "/workspace",
-  "forwardPorts": [5432, 27017],
-  "postCreateCommand": "echo 'Environment Ready'",
-  "remoteUser": "vscode"
-}
