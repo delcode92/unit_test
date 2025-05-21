@@ -14,11 +14,22 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  build_and_test:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     # runs-on: ubuntu-s-1vcpu-2gb-sgp1-01
-    
+
+    services:
+      mongo:
+        image: mongo:6.0
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd="mongosh --eval 'db.adminCommand(\"ping\")'" 
+          --health-interval=10s 
+          --health-timeout=5s 
+          --health-retries=5
+          
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -29,5 +40,8 @@ jobs:
       #   with:
       #     node-version: ${{ matrix.node-version }}
 
-      - name: check dir list
-        run: ls -l && pwd
+      # - name: check dir list
+      #   run: ls -l && pwd
+        
+      - name: check mongo
+        run: mongod --version
