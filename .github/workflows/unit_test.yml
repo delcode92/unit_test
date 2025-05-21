@@ -51,9 +51,17 @@ jobs:
       - uses: supercharge/mongodb-github-action@1.10.0
         with:
           mongodb-version: '6.0'
-      
-      - name: Check MongoDB
-        run: mongod --version
+
+      - name: Check MongoDB connection
+        run: |
+          curl -sL https://www.mongodb.org/static/pgp/server-6.0.asc | gpg --dearmor -o /usr/share/keyrings/mongodb-server.gpg
+          echo "deb [signed-by=/usr/share/keyrings/mongodb-server.gpg] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+          sudo apt-get update
+          sudo apt-get install -y mongodb-org-shell
+          mongosh "mongodb://localhost:27017" --eval "db.stats()"
+    
+      # - name: Check MongoDB
+      #   run: mongod --version
 
 
       # - name: check mongod
