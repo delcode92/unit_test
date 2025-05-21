@@ -52,8 +52,8 @@ jobs:
         with:
           mongodb-version: '6.0'
       
-      - name: Check MongoDB connection
-        run: mongosh "mongodb://localhost:27017" --eval "db.stats()"
+      - name: Check MongoDB
+        run: mongod --version
 
 
       # - name: check mongod
