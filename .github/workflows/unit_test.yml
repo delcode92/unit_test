@@ -52,13 +52,23 @@ jobs:
         with:
           mongodb-version: '6.0'
 
-      - name: Check MongoDB connection
+      - name: Install mongosh
         run: |
-          curl -sL https://www.mongodb.org/static/pgp/server-6.0.asc | gpg --dearmor -o /usr/share/keyrings/mongodb-server.gpg
-          echo "deb [signed-by=/usr/share/keyrings/mongodb-server.gpg] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+          sudo apt-get install gnupg
+          wget -qO- https://www.mongodb.org/static/pgp/server-7.0.asc | sudo tee /etc/apt/trusted.gpg.d/server-7.0.asc
+          echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
           sudo apt-get update
-          sudo apt-get install -y mongodb-org-shell
+          sudo apt-get install -y mongodb-mongosh
+          mongosh --version
           mongosh "mongodb://localhost:27017" --eval "db.stats()"
+          
+      # - name: Check MongoDB connection
+      #   run: |
+      #     curl -sL https://www.mongodb.org/static/pgp/server-6.0.asc | gpg --dearmor -o /usr/share/keyrings/mongodb-server.gpg
+      #     echo "deb [signed-by=/usr/share/keyrings/mongodb-server.gpg] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+      #     sudo apt-get update
+      #     sudo apt-get install -y mongodb-org-shell
+      #     mongosh "mongodb://localhost:27017" --eval "db.stats()"
     
       # - name: Check MongoDB
       #   run: mongod --version
