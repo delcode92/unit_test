@@ -40,13 +40,16 @@ jobs:
         run: pwd
       
       - name: Wait for server
+        working-directory: ./SERVICES/express
         run: |
           docker compose exec app sh -c 'while ! curl -s http://localhost:3000 >/dev/null; do sleep 1; done'
 
       - name: Test endpoint
+        working-directory: ./SERVICES/express
         run: |
           docker compose exec app curl http://localhost:3000
 
       - name: Stop services
         if: always()
+        working-directory: ./SERVICES/express
         run: docker compose down
