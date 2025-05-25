@@ -84,7 +84,10 @@ jobs:
           ls -l
           node server.js 
           curl http://localhost:3000
-          
+      
+      - name: Stop server
+        run: pkill -f "node server.js" || true
+        
       # - name: Check MongoDB connection
       #   run: |
       #     curl -sL https://www.mongodb.org/static/pgp/server-6.0.asc | gpg --dearmor -o /usr/share/keyrings/mongodb-server.gpg
