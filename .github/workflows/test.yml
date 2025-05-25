@@ -19,19 +19,24 @@ jobs:
       - name: docker compose  version
         run: docker compose version
 
-      - name: Set path
+      # - name: Set path
+      #   run: |
+      #     ls -l
+      #     cd SERVICES/express
+      #     ls -l
+      #     pwd
+      
+
+      # - name: check position
+      #   run: pwd
+        
+      - name: Start services
         run: |
           ls -l
           cd SERVICES/express
           ls -l
           pwd
-      
-
-      - name: check position
-        run: pwd
-        
-      - name: Start services
-        run: docker compose up -d
+          docker compose up -d
 
       - name: Wait for server
         run: |
