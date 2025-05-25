@@ -27,8 +27,7 @@ jobs:
       #     pwd
       
 
-      # - name: check position
-      #   run: pwd
+      
         
       - name: Start services
         run: |
@@ -38,6 +37,9 @@ jobs:
           pwd
           docker compose up -d
 
+      - name: check position
+        run: pwd
+      
       - name: Wait for server
         run: |
           docker compose exec app sh -c 'while ! curl -s http://localhost:3000 >/dev/null; do sleep 1; done'
