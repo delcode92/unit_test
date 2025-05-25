@@ -9,7 +9,7 @@ jobs:
       - uses: actions/checkout@v4
       
       - name: install docker compose
-        run: apt-get install docker-compose-plugin
+        run: sudo apt-get install docker-compose-plugin
         
       - name: Start services
         run: docker-compose up -d
