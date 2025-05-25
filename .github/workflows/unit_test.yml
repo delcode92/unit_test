@@ -82,7 +82,7 @@ jobs:
           pwd
           npm i
           ls -l
-          node server.js &
+          node server.js
           curl http://localhost:3000 &
           pkill -f "node server.js" || true
       
