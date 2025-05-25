@@ -82,7 +82,9 @@ jobs:
           pwd
           npm i
           ls -l
-          until node server.js; do curl http://localhost:3000; done
+          until node server.js 
+            do curl http://localhost:3000
+          done
       # - name: Check MongoDB connection
       #   run: |
       #     curl -sL https://www.mongodb.org/static/pgp/server-6.0.asc | gpg --dearmor -o /usr/share/keyrings/mongodb-server.gpg
