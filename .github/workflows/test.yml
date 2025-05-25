@@ -30,9 +30,8 @@ jobs:
       
         
       - name: Start services
+        working-directory: ./SERVICES/express
         run: |
-          ls -l
-          cd SERVICES/express
           ls -l
           pwd
           docker compose up -d
