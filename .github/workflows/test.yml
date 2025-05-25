@@ -15,6 +15,9 @@ jobs:
 
       - name: Set up Docker
         uses: docker/setup-docker-action@v4
+
+      - name: Start services
+        run: docker-compose --version
         
       - name: Start services
         run: docker-compose up -d
