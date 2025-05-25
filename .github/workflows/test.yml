@@ -1,0 +1,24 @@
+name: Docker Test
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start services
+        run: docker-compose up -d
+
+      - name: Wait for server
+        run: |
+          docker-compose exec app sh -c 'while ! curl -s http://localhost:3000 >/dev/null; do sleep 1; done'
+
+      - name: Test endpoint
+        run: |
+          docker-compose exec app curl http://localhost:3000
+
+      - name: Stop services
+        if: always()
+        run: docker-compose down
