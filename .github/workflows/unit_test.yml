@@ -76,11 +76,12 @@ jobs:
 
       - name: check position and install express
         run: |
-          ls -l
-          cd ~/SERVICES/express
           pwd
-          npm i
-          ls -l 
+          ls -l
+     #     cd ~/SERVICES/express
+     #     pwd
+     #     npm i
+     #     ls -l 
       # - name: Check MongoDB connection
       #   run: |
       #     curl -sL https://www.mongodb.org/static/pgp/server-6.0.asc | gpg --dearmor -o /usr/share/keyrings/mongodb-server.gpg
