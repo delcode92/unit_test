@@ -68,7 +68,9 @@ jobs:
       #   run: mongosh "mongodb://localhost:27017" --eval "db.stats()"
 
       # ====================================
-      
+      - name: checking docker        
+        run: docker --version
+        
       - name: checking node, npm
         run: |
           node --version
