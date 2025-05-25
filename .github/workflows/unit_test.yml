@@ -82,11 +82,12 @@ jobs:
           pwd
           npm i
           ls -l
-          node server.js 
-          curl http://localhost:3000
+          node server.js &
+          curl http://localhost:3000 &
+          pkill -f "node server.js" || true
       
-      - name: Stop server
-        run: pkill -f "node server.js" || true
+      # - name: Stop server
+      #   run: pkill -f "node server.js" || true
         
       # - name: Check MongoDB connection
       #   run: |
