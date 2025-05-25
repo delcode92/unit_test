@@ -48,24 +48,37 @@ jobs:
         # with:
         #   mongodb-version: ${{ matrix.mongodb-version }}  
 
-      - uses: supercharge/mongodb-github-action@1.10.0
-        with:
-          mongodb-version: '6.0'
+      # =================================
+      # - uses: supercharge/mongodb-github-action@1.10.0
+      #   with:
+      #     mongodb-version: '6.0'
 
-      - name: Install mongosh
-        run: |
-          sudo apt-get install gnupg
-          wget -qO- https://www.mongodb.org/static/pgp/server-7.0.asc | sudo tee /etc/apt/trusted.gpg.d/server-7.0.asc
-          echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
-          sudo apt-get update
-          sudo apt-get install -y mongodb-mongosh
+      # - name: Install mongosh
+      #   run: |
+      #     sudo apt-get install gnupg
+      #     wget -qO- https://www.mongodb.org/static/pgp/server-7.0.asc | sudo tee /etc/apt/trusted.gpg.d/server-7.0.asc
+      #     echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+      #     sudo apt-get update
+      #     sudo apt-get install -y mongodb-mongosh
        
-      - name: check mongosh    
-        run: mongosh --version
+      # - name: check mongosh    
+      #   run: mongosh --version
         
-      - name: mongosh connect  
-        run: mongosh "mongodb://localhost:27017" --eval "db.stats()"
-          
+      # - name: mongosh connect  
+      #   run: mongosh "mongodb://localhost:27017" --eval "db.stats()"
+
+      # ====================================
+      
+      - name: checking node, npm
+        run: |
+          node --version
+          npm --version
+
+      - name: check position and install express
+        run: |
+          ls -l
+          npm i
+          ls -l
       # - name: Check MongoDB connection
       #   run: |
       #     curl -sL https://www.mongodb.org/static/pgp/server-6.0.asc | gpg --dearmor -o /usr/share/keyrings/mongodb-server.gpg
