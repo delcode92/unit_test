@@ -16,7 +16,7 @@ jobs:
       - name: Set up Docker Compose
         uses: docker/setup-compose-action@v1
         
-      - name: Start services
+      - name: docker compose  version
         run: docker-compose --version
         
       - name: Start services
