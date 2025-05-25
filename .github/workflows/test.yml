@@ -8,10 +8,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: install docker compose
-        run: |
-          sudo apt-get update
-          sudo apt-get install docker-compose-plugin
+      # - name: install docker compose
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install docker-compose-plugin
+
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v4
         
       - name: Start services
         run: docker-compose up -d
