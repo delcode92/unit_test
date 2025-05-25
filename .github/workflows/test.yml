@@ -12,7 +12,9 @@ jobs:
       #   run: |
       #     sudo apt-get update
       #     sudo apt-get install docker-compose-plugin
-
+      - name: Set path
+        run: cd ./SERVICES/express
+      
       - name: Set up Docker Compose
         uses: docker/setup-compose-action@v1
         
